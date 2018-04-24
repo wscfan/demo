@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ws</title>
+</head>
+<body>
+	<label>用户名：<input id="user" type="text" /></label><br />
+	<label>密　码：<input id="pass" type="password" /></label><br />
+	<input id="btn" type="button" value="注册" />
+
+	<script src="jquery-3.3.1.js"></script>
+	<script>
+		$('#btn').on('click', function () {
+			$.ajax({
+				url: '/reg',
+				data: {user: $('#user').val(), pass: $('#pass').val()},
+				dataType: 'json',
+				success (res) {
+					if (res.code) {
+						alert('注册失败,' + res.msg);
+					} else {
+						alert('注册成功');
+					}
+				},
+				error (err) {
+					alert('出错了');
+				}
+			});
+		});
+	</script>
+</body>
+</html>
